@@ -1,0 +1,7 @@
+extends ../layout/layout
+
+block content
+	form(method='POST' action='/general/nuevo' class="form-horizontal form-label-left" novalidate)
+		include form.pug
+		button(type="submit" class="btn btn-success pull-right") Create
+		a(href='/general' class="btn btn-primary pull-right") Cancel

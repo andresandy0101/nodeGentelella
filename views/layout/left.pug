@@ -1,0 +1,63 @@
+mixin render(items)
+	for item in items
+		li
+			if item.items
+				a
+					i(class=item.icon) 
+					!= item.label
+					span(class="fa fa-chevron-down")
+				ul(class="nav child_menu")
+					+render(item.items)
+			else
+				a(href=item.url)
+					i(class=item.icon) 
+					!= item.label
+					
+
+
+
++render([
+	{
+		icon: "fa fa-home",
+		label: "Dashboard",
+		url: "/"
+	},
+	{
+		icon: "fa fa-database",
+		label: "General",
+		items: [
+			{
+				icon: "fa fa-list-alt",
+				label: "List",
+				url: "/general"
+			}, 
+			{
+				icon: "fa fa-plus",
+				label: "Nuevo",
+				url: "/general/nuevo"
+			}
+		],
+	},
+	{
+		icon: "fa fa-gears",
+		label: "Crud",
+		url: "/crud"
+	},
+	/*{
+		icon: "fa fa-home",
+		label: "Users",
+		items: [
+			{
+				icon: "fa fa-home",
+				label: "Dashboard",
+				items:[
+					{
+						icon: "fa fa-home",
+						label: "Dashboard",
+						url: "/"
+					}
+				]
+			}
+		]
+	}*/
+])

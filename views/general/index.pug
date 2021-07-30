@@ -1,0 +1,27 @@
+extends ../layout/layout
+
+block content
+
+	a(href='/general/nuevo' class="btn btn-success pull-right") 
+		!= "Agregar nuevo "
+		i(class="fa fa-plus")
+
+	+grid(
+		model, 
+		database,
+		[
+			't01_id',
+			't01_text',
+			't01_area',
+			't01_number',
+			't01_password',
+			't01_email',
+			't01_date', 
+			't01_time', 
+			't01_timestamp'
+		], 
+		[
+			{icon: 'fa fa-pencil', label: 'Update', url:'/general/modifica/', params:['t01_id']},
+			{icon: 'fa fa-trash', label: 'Delete', onclick:"confirmaDelete", url:'/general/delete/', params:['t01_id']},
+		]
+	)

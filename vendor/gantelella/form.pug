@@ -1,0 +1,58 @@
+mixin renderInput(field, model ,options, type)
+	
+	- var value = ""
+	if model.values != null
+		- value =  model.values[field] ? model.values[field] : ""
+
+	div(class="item form-group")
+		label(class="control-label col-md-3 col-sm-3 col-xs-12" for=field)= model.attributes[field]
+		div(class="col-md-6 col-sm-6 col-xs-12")
+			if options.required
+				input(id=field class="form-control col-md-7 col-xs-12" placeholder=options.placeholder required name=field type=type value=value)
+			else
+				input(id=field class="form-control col-md-7 col-xs-12" placeholder=options.placeholder name=field type=type value=value)
+
+mixin inputText(field, model, options)
+	+renderInput(field, model ,options, 'text')
+
+mixin inputNumber(field, model, options)
+	+renderInput(field, model ,options, 'number')
+
+mixin inputPassword(field, model, options)
+	+renderInput(field, model ,options, 'password')
+
+mixin inputEmail(field, model, options)
+	+renderInput(field, model ,options, 'email')
+
+mixin inputArea(field, model, options)
+	
+	- var value = ""
+	if model.values != null
+		- value =  model.values[field] ? model.values[field] : ""
+
+	div(class="item form-group")
+		label(class="control-label col-md-3 col-sm-3 col-xs-12" for=field)= model.attributes[field]
+		div(class="col-md-6 col-sm-6 col-xs-12")
+			if options.required
+				textarea(id=field class="form-control col-md-7 col-xs-12" required rows=options.rows placeholder=options.placeholder cols=options.cols name=field)= value
+			else
+				textarea(id=field class="form-control col-md-7 col-xs-12" rows=options.rows placeholder=options.placeholder cols=options.cols name=field)= value
+
+mixin inputDate(field, model, options)
+
+	- var value = ""
+	if model.values != null || model.values != undefined
+		- value =  model.values[field] ? model.values[field] : ""
+
+	- var typeInput = "myDatepicker2"
+	if options.type == 'time'
+		- typeInput = "myDatepicker3"
+	else if options.type == 'timestamp'
+		- typeInput = "myDatepicker"
+
+	div(class="item form-group")
+		label(class="control-label col-md-3 col-sm-3 col-xs-12" for=field)= model.attributes[field]
+		div(class="col-md-6 col-sm-6 col-xs-12 input-group date" id=typeInput)
+			input(id=field class="form-control col-md-7 col-xs-12" name=field type='text' value=value)
+			span(class="input-group-addon")
+				span(class="glyphicon glyphicon-calendar")

@@ -1,0 +1,25 @@
+mixin grid(model, datas, rows, actions)
+	table(id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%")
+		thead
+			tr
+				each row in rows
+					td= model.attributes[row]
+				td
+		tbody
+			each data in datas
+				tr
+					each row in rows
+						td= data[row]
+					td
+						div(class="btn-group buttons")
+							each action in actions
+								- var parameter = ""
+								if action.params
+									each param in action.params
+										- parameter += data[param] + "/"
+								if action.onclick
+									a(href="#" onClick=action.onclick + "('" + action.url + parameter + "');" class="btn btn-success btn-xs")
+										i(class=action.icon)
+								else
+									a(href=action.url + parameter class="btn btn-success btn-xs")
+										i(class=action.icon)
