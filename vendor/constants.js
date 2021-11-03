@@ -1,7 +1,7 @@
 module.exports = {
-	mysql_host: '192.168.1.74',
-    mysql_user: 'pi',
-    mysql_password: '7QTJgqBSe9rSDkc8',
+	mysql_host: '127.0.0.1',
+    mysql_user: 'root',
+    mysql_password: '',
     mysql_database: 'gantelella', 
 
     row_colum_name : "COLUMN_NAME",
